@@ -1,0 +1,30 @@
+export interface ProjectConfig {
+  projectName: string;
+  additionalPackages: string[];
+  middlewares: string[];
+  securityStrategies: string[];
+  observabilityLibs: string[];
+  packageManager: string | null;
+  nodeVersion: string | null;
+  framework: string | null;
+  apiPattern: string | null;
+  database: string | null;
+  databaseEngine: string | null;
+  migrationsEnabled: boolean;
+  seedEnabled: boolean;
+  linter: string | null;
+  testLibrary: string | null;
+  logger: string | null;
+  healthcheckEnabled: boolean;
+  documentation: string | null;
+  security: string | null;
+  architecture: string | null;
+  ciCdEnabled: boolean;
+  dockerfileEnabled: boolean;
+  dockerComposeEnabled: boolean;
+  messagingEnabled: boolean;
+  messagingType: string | null;
+  templatePlugins: string[];
+  environments: string[];
+  secretsProvider: string;
+}
