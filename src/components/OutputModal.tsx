@@ -16,6 +16,8 @@ export const OutputModal: React.FC<OutputModalProps> = ({ config, onClose }) => 
   const [copied, setCopied] = useState(false);
   const [buildSteps, setBuildSteps] = useState<string[]>([]);
   const [isBuilding, setIsBuilding] = useState(true);
+  const [showSavingsModal, setShowSavingsModal] = useState(false);
+  const [savingsData, setSavingsData] = useState({ tokens: 0, dollars: 0 });
   const [timestamp] = useState(() => new Date().toISOString());
   const terminalEndRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -194,6 +196,16 @@ export const OutputModal: React.FC<OutputModalProps> = ({ config, onClose }) => 
 
   const handleDownload = () => {
     const generatedFiles = flattenFileTree(buildProjectFileTree(config));
+    
+    // Calculate estimated savings
+    const fileCount = generatedFiles.length;
+    // Base prompt tokens (2500) + roughly 650 tokens per file + plugins/packages impact
+    const tokensSaved = 2500 + (fileCount * 650) + (config.templatePlugins.length * 800) + (config.additionalPackages.length * 150);
+    // Assuming roughly $3.00 per 1M tokens combined (prompt + output for latest models)
+    const dollarsSaved = (tokensSaved / 1000000) * 3.00;
+    
+    setSavingsData({ tokens: tokensSaved, dollars: dollarsSaved });
+
     const blob = createZipBlob([
       ...generatedFiles,
       { path: "synthetix.config.json", content: jsonString },
@@ -206,6 +218,8 @@ export const OutputModal: React.FC<OutputModalProps> = ({ config, onClose }) => 
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+    
+    setShowSavingsModal(true);
   };
 
   return (
@@ -317,6 +331,55 @@ export const OutputModal: React.FC<OutputModalProps> = ({ config, onClose }) => 
           </button>
         </div>
       </div>
+
+      {/* Savings Modal */}
+      {showSavingsModal && (
+        <div className="modal-overlay" style={{ zIndex: 1000, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(4px)' }}>
+          <div className="modal-content animate-fade-in" style={{ maxWidth: '420px', textAlign: 'center', border: '1px solid #333' }}>
+            <div className="modal-header" style={{ justifyContent: 'center', borderBottom: 'none', paddingBottom: '0' }}>
+              <h2 style={{ fontSize: '1.5rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                💰 <span style={{ background: 'linear-gradient(90deg, #00ffcc, #0077ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>You just saved!</span>
+              </h2>
+            </div>
+            <div className="modal-body-grid" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '2rem' }}>
+              <p style={{ color: '#aaa', fontSize: '0.9rem', lineHeight: '1.4' }}>
+                By using Synthetix Configurator instead of manually prompting an AI, you saved approximately:
+              </p>
+              
+              <div style={{ background: '#0a0a0a', padding: '1.5rem', borderRadius: '12px', border: '1px solid #222', boxShadow: 'inset 0 2px 10px rgba(0,0,0,0.5)' }}>
+                <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#00ffcc', textShadow: '0 0 20px rgba(0,255,204,0.3)' }}>
+                  ~{savingsData.tokens.toLocaleString()}
+                </div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 'bold', letterSpacing: '2px', color: '#666', marginTop: '0.5rem' }}>
+                  TOKENS
+                </div>
+              </div>
+
+              <div style={{ background: '#0a0a0a', padding: '1.5rem', borderRadius: '12px', border: '1px solid #222', boxShadow: 'inset 0 2px 10px rgba(0,0,0,0.5)' }}>
+                <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#ffcc00', textShadow: '0 0 20px rgba(255,204,0,0.3)' }}>
+                  ${savingsData.dollars.toFixed(4)}
+                </div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 'bold', letterSpacing: '2px', color: '#666', marginTop: '0.5rem' }}>
+                  API COST SAVED
+                </div>
+              </div>
+
+              <p style={{ fontSize: '0.85rem', color: '#555', marginTop: '0.5rem' }}>
+                Plus hours of debugging boilerplate code! 🚀
+              </p>
+            </div>
+            <div className="modal-footer-actions" style={{ justifyContent: 'center', borderTop: '1px solid #222', paddingTop: '1rem', paddingBottom: '1rem' }}>
+              <button 
+                className="primary-modal-close" 
+                onClick={() => setShowSavingsModal(false)}
+                style={{ width: '100%', padding: '0.75rem', background: 'linear-gradient(90deg, #00ffcc, #0077ff)', color: '#000', fontWeight: 'bold' }}
+              >
+                Awesome!
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

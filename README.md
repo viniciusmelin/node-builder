@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>⚡ Synthetix Configurator ⚡</h1>
+  <h1>⚡ Node Builder ⚡</h1>
   <p><strong>Interactive Next.js configurator for Node.js and NestJS service scaffolds.</strong></p>
   
   <p>
@@ -15,7 +15,7 @@
 
 ## 💡 The Idea
 
-**Synthetix Configurator** was built with a clear mission: to eliminate the repetitive boilerplate setup when starting new backend projects. Whether you are building a lightweight Node.js API or a complex NestJS microservice, this tool allows you to interactively configure your stack and instantly generate production-ready code.
+**Node Builder** was built with a clear mission: to eliminate the repetitive boilerplate setup when starting new backend projects. Whether you are building a lightweight Node.js API or a complex NestJS microservice, this tool allows you to interactively configure your stack and instantly generate production-ready code.
 
 Our goal is to make this project **publicly available** and **host it online**, so developers from all around the world can access it, speed up their workflows, and build better software faster. 
 
