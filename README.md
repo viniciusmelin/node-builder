@@ -1,22 +1,44 @@
-# Synthetix Configurator
+<div align="center">
+  <h1>⚡ Synthetix Configurator ⚡</h1>
+  <p><strong>Interactive Next.js configurator for Node.js and NestJS service scaffolds.</strong></p>
+</div>
 
-Interactive Next.js configurator for Node.js and NestJS service scaffolds.
+---
 
-The application validates compatible selections, previews every generated file,
-and downloads the selected scaffold as a ZIP containing source code,
-configuration, CI, container files, and `synthetix.config.json`.
+## 💡 The Idea
 
-## Development
+**Synthetix Configurator** was built with a clear mission: to eliminate the repetitive boilerplate setup when starting new backend projects. Whether you are building a lightweight Node.js API or a complex NestJS microservice, this tool allows you to interactively configure your stack and instantly generate production-ready code.
+
+Our goal is to make this project **publicly available** and **host it online**, so developers from all around the world can access it, speed up their workflows, and build better software faster. 
+
+---
+
+## 🚀 Features
+
+- **Interactive Configuration:** Seamlessly pick and choose your stack, database, and plugins.
+- **Real-time Preview:** See exactly what files are being generated and preview their code before downloading.
+- **Smart Validation:** The system ensures that your selections (frameworks, APIs, Node versions) are fully compatible.
+- **Instant Download:** Get a complete `.zip` artifact containing source code, configurations, CI/CD workflows, Dockerfiles, and `synthetix.config.json`.
+- **Advanced Ecosystem:** Support for Redis, Kafka, gRPC, WebSockets, Stripe, BullMQ, pnpm monorepos, and AWS Serverless templates.
+- **Production Ready:** Pre-configured with observability (OpenTelemetry, Sentry, Datadog), security presets, and database lifecycles (PostgreSQL, MySQL, MongoDB).
+
+---
+
+## 💻 Getting Started (Local Development)
+
+Want to run the configurator locally? Follow these steps:
 
 ```bash
+# 1. Install dependencies
 npm install
+
+# 2. Start the development server
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action.
 
-## Quality checks
-
+### Quality Checks
 ```bash
 npm run lint
 npm test
@@ -24,26 +46,26 @@ npm run test:coverage
 npm run build
 ```
 
-The generator tests validate package metadata, local imports, security defaults,
-Docker commands, configuration conflicts, and the ZIP artifact.
+---
 
-## Generation model
+## 🌍 Hosting & Public Release
 
-- Node.js options are restricted to supported LTS release lines.
-- Unsupported framework/API combinations block generation with a visible error.
-- Docker and GitHub Actions commands follow the selected package manager.
-- Authentication examples fail closed when required secrets are absent.
-- Security, middleware, and observability presets add dependencies; their runtime
-  wiring remains explicit because it depends on the chosen HTTP adapter and
-  deployment threat model.
+This project is open-source and intended to be a community resource! The plan is to host a live version of this configurator so anyone can use it without needing to run it locally. 
 
-## Advanced generation
+If you are a developer looking for a fast, reliable way to bootstrap Node.js and NestJS applications, this tool is for you!
 
-- Plugin registry: Redis, Kafka, gRPC, WebSockets, Stripe, BullMQ, pnpm
-  monorepo, and AWS Serverless templates.
-- Environment profiles: development, staging, and production examples validated
-  with Zod, with optional AWS Secrets Manager loading.
-- Connected observability: OpenTelemetry, Sentry, Datadog, Prometheus,
-  readiness endpoints, Grafana provisioning, and a starter dashboard.
-- Database lifecycle: PostgreSQL, MySQL, or MongoDB containers; TypeORM
-  migrations; and idempotent seed commands.
+---
+
+## 💖 Support the Project
+
+Building and maintaining open-source software takes time, effort, and hosting costs. If this tool saves you hours of setup time and you want to support its ongoing development, please consider making a donation!
+
+Your support helps pay for server costs, domain renewals, and fuels further feature development.
+
+*Donation links coming soon! (Patreon / Buy Me a Coffee / GitHub Sponsors)*
+
+---
+
+## 🤝 Contributing
+
+Contributions are always welcome! Feel free to open an issue, submit a pull request, or suggest new features to make the scaffolding process even better.
