@@ -1,6 +1,14 @@
 <div align="center">
   <h1>⚡ Synthetix Configurator ⚡</h1>
   <p><strong>Interactive Next.js configurator for Node.js and NestJS service scaffolds.</strong></p>
+  
+  <p>
+    <a href="https://github.com/viniciusmelin/node-builder/actions"><img src="https://img.shields.io/github/actions/workflow/status/viniciusmelin/node-builder/test.yml?branch=master&label=Tests&style=flat-square" alt="Test Status"></a>
+    <a href="https://github.com/viniciusmelin/node-builder/releases"><img src="https://img.shields.io/github/package-json/v/viniciusmelin/node-builder?style=flat-square&color=blue" alt="Version"></a>
+    <a href="https://github.com/viniciusmelin/node-builder/blob/master/LICENSE"><img src="https://img.shields.io/github/license/viniciusmelin/node-builder?style=flat-square" alt="License"></a>
+    <img src="https://img.shields.io/badge/Next.js-black?style=flat-square&logo=next.js" alt="Next.js">
+    <img src="https://img.shields.io/badge/TypeScript-blue?style=flat-square&logo=typescript" alt="TypeScript">
+  </p>
 </div>
 
 ---
