@@ -77,3 +77,9 @@ Your support helps pay for server costs, domain renewals, and fuels further feat
 ## 🤝 Contributing
 
 Contributions are always welcome! Feel free to open an issue, submit a pull request, or suggest new features to make the scaffolding process even better.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more information.
